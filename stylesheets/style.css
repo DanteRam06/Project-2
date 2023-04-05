@@ -1,0 +1,53 @@
+body{
+    background-color: rgba(184, 184, 21, 0.184);
+}
+
+header h1{
+    margin-top: 10%;
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /*This is important for positioning the arrow buttons*/
+    margin-bottom: 10%;
+}
+  
+  .arrow-button {
+    position: absolute;
+    /* chatgbt added the code below we can remove it completely once we get it looking perfect */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    background-color: transparent;
+    /* border: none; */
+    cursor: pointer;
+    
+  }
+  
+  /* below puts space between arrow and image */
+  .left-arrow {
+   margin-right: 50%;
+  }
+  
+  .right-arrow {
+    margin-left:50%;
+  }
+
+  #yourLibrary{
+    margin: 10px;
+    text-align: center;
+
+  }
+  #friends{
+    margin: 10px;
+    text-align: center;
+
+  }
+  /* removes styling from friends link */
+  #friends a{
+    color: black;
+    text-decoration: none;
+  }
+  
