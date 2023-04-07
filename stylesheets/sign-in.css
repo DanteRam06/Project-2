@@ -1,4 +1,5 @@
 body {
+  background-image: url("library-book-bookshelf-read.jpeg");
   background-color: rgba(184, 184, 21, 0.184);
   display: flex;
   justify-content: center;
@@ -14,12 +15,23 @@ header {
   background-color: #f2f2f2;
   padding: 10px;
   text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
       
 /* Styling for sign-in form */
 form {
-  width: 400px;
+  width: 450px;
   padding: 20px;
   background-color: #f2f2f2;
   border-radius: 5px;
@@ -27,7 +39,9 @@ form {
       
 /* Styling for forms field */
 input[type=text], input[type=password] {
-  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  width: 95%;
   padding: 10px;
   margin: 5px 0;
   border: none;
@@ -47,5 +61,22 @@ input[type=submit] {
       
 /* Hover styling for button*/
 input[type=submit]:hover {
+  background-color:#17174a;
+}
+
+/* Styling for sign-up button */
+input[type=sign-up] {
+  background-color: #252c75;
+  width: 47px;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+      
+/* Hover styling for sign-up button*/
+input[type=signup-up]:hover {
   background-color:#17174a;
 }
