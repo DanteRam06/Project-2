@@ -65,9 +65,9 @@ input[type=submit]:hover {
 }
 
 /* Styling for sign-up button */
-input[type=sign-up] {
+input[type=register] {
   background-color: #252c75;
-  width: 47px;
+  width: 50px;
   color: white;
   padding: 10px;
   margin-top: 10px;
