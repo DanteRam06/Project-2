@@ -1,3 +1,4 @@
+// import{replaceImageUrl, addBook, searchTitle} from './functions.js';
 const bookISBN = "9780142424179"; // Replace with desired ISBN(book reference number)
 
 const apiUrl = `https://openlibrary.org/api/books?bibkeys=ISBN:${bookISBN}&format=json&jscmd=data`;
@@ -53,7 +54,7 @@ fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`)
         });
     }
     else{
-        alert('Book not found'); //this currently doesnt work
+        alert('Book not found'); // this only works sometimes
     }
   });
 
