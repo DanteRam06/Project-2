@@ -32,6 +32,7 @@ Book.init(
       type: DataTypes.DATE,
       allowNull: true
     },
+    // remove publisher id if there is only one publisher and add the publisher name directly in the book
     publisher_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
