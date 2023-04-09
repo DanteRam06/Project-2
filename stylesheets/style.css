@@ -40,6 +40,9 @@ header h1{
     text-align: center;
 
   }
+  #yourLibrary:hover{
+    cursor: pointer;
+  }
   #friends{
     margin: 10px;
     text-align: center;
@@ -67,5 +70,31 @@ header h1{
   /* Hover styling for button*/
   .signin-button:hover {
     background-color: #17174a;
+    cursor: pointer;
+  }
+  
+  /* dropdown start */
+  
+  .dropdown-content {
+    display: none;
+    /* position: absolute; */
+  }
+  
+  .dropdown-content a {
+    padding: 10px;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .dropdown-content.active {
+    display: block;
+  }
+  .add-button{
+    background-color: transparent;
+    color: black;
+
   }
   
