@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Define BookGenres model
+// Define BookGenre model
 class BookGenre extends Model {}
 
 BookGenre.init(
