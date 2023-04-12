@@ -30,7 +30,7 @@ fetch(apiUrl)
     // get book based off title from api
     function searchTitle(){
         const title = prompt("Enter the title of the book:");
-        const dropdownContent = document.querySelector(".dropdown-content");
+        const dropdownContent = document.querySelector(".library-content");
 // Search for books by title
 fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`)
   .then(response => response.json())
@@ -53,15 +53,18 @@ fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`)
        
         });
     }
-    else{
+    else {
         alert('Book not found'); // this only works sometimes
+        return;
     }
   });
 
     }
 
+
     // call all functions
-      replaceImageUrl();
+      
+    replaceImageUrl();
       addBook();
   })
 
