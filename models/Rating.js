@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-// Define Book model
 class Rating extends Model {}
 
 Rating.init(
@@ -18,3 +17,7 @@ Rating.init(
         }
     }
 );
+
+
+
+module.exports = Rating;

@@ -21,7 +21,6 @@ Book.init(
       allowNull: true
     },
     rating: {
-      type: DataTypes.DECIMAL(4, 2),
       allowNull: true
     },
     isbn: {
@@ -33,18 +32,12 @@ Book.init(
       allowNull: true
     },
     // remove publisher id if there is only one publisher and add the publisher name directly in the book
-    publisher_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: Publisher,
-        key: 'publisher_id'
-      }
+    publisher: {
+      type: DataTypes.STRING,
     }
   },
   {
     sequelize,
-    timestamps: false,
     modelName: 'book'
   }
 );
