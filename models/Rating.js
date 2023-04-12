@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-// Define Book model
 class Rating extends Model {}
 
 Rating.init(
@@ -18,3 +17,8 @@ Rating.init(
         }
     }
 );
+
+Books.hasMany(Rating, {foreignKey: 'rating_id'});
+Ratings.belongsTo(Book, {foreignKey: 'book_id'});
+
+module.exports = Rating;

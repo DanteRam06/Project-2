@@ -21,7 +21,6 @@ Book.init(
       allowNull: true
     },
     rating: {
-      type: DataTypes.DECIMAL(4, 2),
       allowNull: true
     },
     isbn: {
