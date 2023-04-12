@@ -74,7 +74,7 @@ header h1{
   }
   
   /* dropdown start */
-   .library-content {
+   .library-content figure {
     max-height: 100%;
     /* below keeps book covers on the same line and allows scrolling when overflow */
     white-space: nowrap; 
@@ -85,19 +85,22 @@ header h1{
   
   .library-content img {
     display: inline;
-    margin: auto;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
     max-width: 100%;
     height: 250px;
+    border: 5px solid black;
   }
-  
+  .library-content figure{
+    display: inline;
+    max-width: 
+  }
   .add-button{
     background-color: transparent;
     color: black;
 
   }
   
- 
 
 
 

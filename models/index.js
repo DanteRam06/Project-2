@@ -49,37 +49,52 @@ fetch(apiUrl)
       }
 
     //   function to add book to my library
-      function addBook(){
+    function addBook(){
     //when add button is clicked, run the function search title
     document.querySelector(".add-button").addEventListener("click", function(event) {
     searchTitle();
+    // getPercent();
   });
 }
 
     // get book based off title from api
     function searchTitle(){
-        const title = prompt("Enter the title of the book:");
-        const dropdownContent = document.querySelector(".library-content");
-// Search for books by title
-fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`)
-  .then(response => response.json())
-  .then(data => {
-    // Get the first result from the search results
-    const book = data.docs[0];
+     const title = prompt("Enter the title of the book:");
+     const libraryContent = document.querySelector(".library-content");
     
-    // Get the book cover ID from the book object
-    const coverId = book.cover_i;
+      // Prompt the user to enter the amount of pages they have read
+      const pagesRead = parseInt(prompt("Enter the amount of pages you have read:"));
     
-    // If the book has a cover, fetch the cover image and display it
-    if (coverId) {
-      fetch(`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`)
-        .then(response => {
-            // code below wont display image
-        const newBook = document.createElement("img");
-        // newBook.src = response.url;
-        newBook.src = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
-        dropdownContent.appendChild(newBook);
-       
+      // Get the total number of pages from the bookInfo object
+      const totalPages = bookInfo.number_of_pages;
+    
+      // Calculate the percentage of pages read
+      const percentage = Math.round((pagesRead / totalPages) * 100);
+    
+      
+    // Search for books by title
+    fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`)
+      .then(response => response.json())
+      .then(data => {
+        // Get the first result from the search results
+        const book = data.docs[0];
+        
+        // Get the book cover ID from the book object
+        const coverId = book.cover_i;
+      
+        // If the book has a cover, fetch the cover image and display it
+        if (coverId) {
+          fetch(`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`)
+            .then(response => {
+            const newFigure = document.createElement("figure");
+            const newBook = document.createElement("img");
+            const figcaption = document.createElement("figcaption");
+            newBook.src = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+            newBook.classList.add('bookCover');
+            figcaption.textContent = `${percentage}%`;
+            newFigure.appendChild(newBook);
+            newFigure.appendChild(figcaption);
+          libraryContent.appendChild(newFigure);
         });
     }
     else {
@@ -87,8 +102,9 @@ fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`)
         return;
     }
   });
-
-    }
+  
+  };
+    
 
 
     // call all functions
