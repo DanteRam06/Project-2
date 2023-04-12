@@ -77,6 +77,6 @@ input[type=register] {
 }
       
 /* Hover styling for sign-up button*/
-input[type=signup-up]:hover {
+input[type=register]:hover {
   background-color:#17174a;
 }
