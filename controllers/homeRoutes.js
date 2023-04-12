@@ -18,5 +18,11 @@ router.post('/rating', async (req, res) => {
     res.status(404).json({ message: 'Server Error' });
   }
 });
+router.post('/login', (req, res) => {
+
+ res.render('login')
+ 
+});
+
 
 module.exports = router;
