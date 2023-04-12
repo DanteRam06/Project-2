@@ -10,25 +10,32 @@
     <header>
     <h1>Reading Now</h1>
     </header>
-
-    <body>
+    <!-- sign out button below -->
       <button class="signout-button">Sign Out</button>
-    </body>
 
     <div class="image-container">
         <button class="arrow-button left-arrow"><</button>
-        <img src="https://placehold.co/200x250" alt="Image">
+        <img id="readingNow" src="" alt="">
         <button class="arrow-button right-arrow">></button>
       </div>
 
-      <div id="yourLibrary">
+      <div id="yourLibrary" class="dropdown">
         <!-- need to make this a clickable dropdown-->
         <h2>Your Library</h2>
+        <div class="dropdown-content">
+            <!-- <a href="#"><img src="https://placehold.co/100x150" alt=""></a>
+            <a href="#"><img src="https://placehold.co/100x150" alt=""></a>
+            <a href="#"><img src="https://placehold.co/100x150" alt=""></a> -->
+            <button class="add-button">+</button>
+          </div>
       </div>
 
       <div id="friends">
         <a href="friends.html" target="_blank"><h2>Friends</h2></a>
       </div>
-      
+
+      <div id="test"></div>
+      <script src="./models/functions.js"></script>
+      <script src="./models/index.js"></script>
 </body>
 </html>
