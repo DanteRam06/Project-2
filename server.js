@@ -1,17 +1,14 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-}
-
-const express = require('express');
-const routes = require('./controllers');
 const path = require('path');
-const exphbs = require('express-handlebars');
-const hbs = exphbs.create({helpers});
-const helpers = require('./utils/helpers');
+const express = require('express');
 const session = require('express-session');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
+
 const sequelize = require('./config/connection');
+
+// Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const bcrypt = require('bcrypt')
 const passport = require('passport')
 const methodOverride = require('method-override')
 
@@ -25,6 +22,9 @@ initializePassport(
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
+const hbs = exphbs.create({ helpers });
+
 app.use(express.urlencoded({ extended: false}))
 app.use(flash())
 app.use(session({
@@ -35,58 +35,33 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
-//Display homepage
-app.get('/', (req, res) => {
-    res.render('index.html', { name: req.user.name});
+
+
+// Configure and link a session object with the sequelize store
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+
+// Add express-session and store as Express.js middleware
+app.use(session(sess));
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
 
-//Display login page
-app.get('/', (req, res) => {
-    res.render('sign-in.html');
-});
-
-app.post('/sign-in', passport.authenticate('local',{
-    successRedirect: '/',
-    failureRedirect: 'sign-in',
-    failureFlash: true
-}))
-
-//Display register page
-app.get('/', (req, res) => {
-    res.render('register.html');
-    try {
-        const hashedPassword = brypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            name: rwq.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        })
-        res.redirect('/sign-in')
-    } catch {
-        res.redirect('/register')
-    }
-    req.body.email
-});
-
-app.delete('/logout', (req, res) => {
-    req.logOut()
-    req.redirect('/login')
-})
-
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next()
-    }
-
-    res.redirect('/sign-in')
-}
-
-function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return res.redirect('/')
-    }
-    next()
-}
-
-app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));

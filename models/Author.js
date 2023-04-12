@@ -6,7 +6,7 @@ class Author extends Model {}
 
 Author.init(
   {
-    author_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -26,7 +26,6 @@ Author.init(
   },
   {
     sequelize,
-    timestamps: false,
     modelName: 'author'
   }
 );

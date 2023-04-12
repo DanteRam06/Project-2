@@ -6,7 +6,7 @@ class Genre extends Model {}
 
 Genre.init(
   {
-    genre_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -14,14 +14,6 @@ Genre.init(
     name: {
       type: DataTypes.STRING(255),
       allowNull: false
-    },
-    parent_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: Genre,
-        key: 'genre_id'
-      }
     }
   },
   {
