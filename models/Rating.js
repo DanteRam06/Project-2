@@ -18,7 +18,6 @@ Rating.init(
     }
 );
 
-Books.hasMany(Rating, {foreignKey: 'rating_id'});
-Ratings.belongsTo(Book, {foreignKey: 'book_id'});
+
 
 module.exports = Rating;
