@@ -1,3 +1,4 @@
+
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -9,11 +10,33 @@ const sequelize = require('./config/connection');
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const passport = require('passport')
+const methodOverride = require('method-override')
+
+const initializePassport = require('./passport-config')
+initializePassport(
+    passport,
+    email => users.find(user => user.email === email),
+    id => users.find(user => user.id === id)
+)
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
 const hbs = exphbs.create({ helpers });
+
+app.use(express.urlencoded({ extended: false}))
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_ENV,
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+
 
 // Configure and link a session object with the sequelize store
 const sess = {
@@ -25,6 +48,7 @@ const sess = {
     db: sequelize
   })
 };
+
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
@@ -41,3 +65,4 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
