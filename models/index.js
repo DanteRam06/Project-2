@@ -75,11 +75,11 @@ fetch(apiUrl)
     }
   });
   
+    if(percentage > 0){
+      
+    }
   };
-    
-
-
-    // call all functions
+ // call all functions
       
     replaceImageUrl();
       addBook();

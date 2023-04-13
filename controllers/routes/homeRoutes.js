@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../../config/connection');
 const express = require('express');
 const router = express.Router();
-const Rating = require('../models/Rating');
+const Rating = require('../../models/Rating');
 
 // Create a new rating
 router.post('/rating', async (req, res) => {
