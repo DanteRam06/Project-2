@@ -58,26 +58,32 @@ fetch(apiUrl)
         if (coverId) {
           fetch(`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`)
             .then(response => {
+            const ratingLink = document.createElement("a"); 
             const newFigure = document.createElement("figure");
             const newBook = document.createElement("img");
             const figcaption = document.createElement("figcaption");
             newBook.src = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
             newBook.classList.add('bookCover');
             figcaption.textContent = `${percentage}%`;
-            newFigure.appendChild(newBook);
+            ratingLink.href = "../public/html_assets/ratingsForm.html"; //not being directed to this file for some reason. Replaced with external website and it worked fine
+            ratingLink.appendChild(newBook);
+            newFigure.appendChild(ratingLink);
             newFigure.appendChild(figcaption);
-          libraryContent.appendChild(newFigure);
+            libraryContent.appendChild(newFigure);
         });
     }
-    else {
-        alert('Book not found'); // this only works sometimes
-        return;
+    else if (percentage > 1) {
+      const readingNow = document.getElementById("readingNow");
+      readingNow.innerHTML = "";
+      readingNow.appendChild(newFigure);
     }
+    else {
+      alert('Book not found'); // this only works sometimes
+      return;
+  }
   });
   
-    if(percentage > 0){
-      
-    }
+
   };
  // call all functions
       
@@ -87,3 +93,5 @@ fetch(apiUrl)
 
 //   if error happens while fetch is running, log error to console and finish running code
   .catch(error => console.error(error));
+
+  document.querySelector('.bookCover').addEventListener('click',)
